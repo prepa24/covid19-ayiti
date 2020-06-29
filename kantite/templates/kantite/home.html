@@ -1,0 +1,164 @@
+{%extends 'kantite/base.html'%}
+
+{% block title %} Covid-19 Haiti {% endblock%}
+
+
+{%block content %}
+
+	<h3 class="text-info">Rezilta Covid-19 {{country}}</h3>
+	<p><span>{{ value|date:"d M Y" }}</span></p>
+  	<hr class="bg-info">
+
+  <div class="row">
+
+  	<div class="col-md-4 mt-4"> 
+		<div class="card text-white bg-danger mb-3" >
+		  <div class="card-body">
+		    <h5 class="card-title text-center">{{cases}}</h5>
+		    <p class="card-text text-center">Moun ki teste pozitif nan korona viris la</p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="col-md-4 mt-4"> 
+		<div class="card text-white bg-warning mb-3" >
+		  <div class="card-body">
+		    <h5 class="card-title text-center">{{tests}}</h5>
+		    <p class="card-text text-center">Kantite moun ki teste nan korona viris </p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="col-md-4 mt-4"> 
+		<div class="card text-white bg-dark mb-3" >
+		  <div class="card-body">
+		    <h5 class="card-title text-center">{{deaths}}</h5>
+		    <p class="card-text text-center">Moun ki Mouri nan korona viris la</p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="col-md-4 mt-4"> 
+		<div class="card text-white bg-success mb-3" >
+		  <div class="card-body">
+		    <h5 class="card-title text-center">{{recovered}}</h5>
+		    <p class="card-text text-center">Moun ki Geri nan korona viris la</p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="col-md-4 mt-4"> 
+		<div class="card text-white bg-danger mb-3" >
+		  <div class="card-body">
+		    <h5 class="card-title text-center">{{active}}</h5>
+		    <p class="card-text text-center">Kantite Moun ki ap viv ak korona viris la</p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="col-md-4 mt-4"> 
+		<div class="card text-white bg-danger mb-3" >
+		  <div class="card-body">
+		    <h5 class="card-title text-center">{{critical}}</h5>
+		    <p class="card-text text-center"> Moun ki tre mal ak maladi la</p>
+		  </div>
+		</div>
+	</div>
+
+	<!--Korona pou jodia -->
+
+ </div>
+
+ 	<!--pou jodia -->
+
+ 	<h3 class="mt-4 text-info">Rezilta Covid-19 {{country}} pou jodia</h3>
+	<p><span>{{ value|date:"d M Y" }}</span></p>
+  	<hr class="bg-info">
+
+
+ <div class="row">
+
+  	<div class="col-md-4 mt-4"> 
+		<div class="card text-white bg-danger mb-3" >
+		  <div class="card-body">
+		    <h5 class="card-title text-center">{{todayCases}}</h5>
+		    <p class="card-text text-center">Moun ki teste pozitif nan korona pou jodia</p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="col-md-4 mt-4"> 
+		<div class="card text-white bg-dark mb-3" >
+		  <div class="card-body">
+		    <h5 class="card-title text-center">{{todayDeaths}}</h5>
+		    <p class="card-text text-center">Moun ki Mouri nan korona viris jodia</p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="col-md-4 mt-4"> 
+		<div class="card text-white bg-success mb-3" >
+		  <div class="card-body">
+		    <h5 class="card-title text-center">{{todayRecovered}}</h5>
+		    <p class="card-text text-center">Moun ki Geri nan korona viris jodia</p>
+		  </div>
+		</div>
+	</div>
+
+	<!--Korona pou jodia -->
+
+ </div>
+
+ <div class="row">
+  <canvas id="myChart" width="400" height="200" class="mt-5"></canvas>
+
+  <script>
+var ctx = document.getElementById('myChart');
+var myChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: {
+        labels: ['Positiv', 'Moun ki Teste', 'Moun Ki Mouri', 'Moun Ki Geri', 'Moun ki ap viv ak Korona a', 'Moun Ki grav ak Korona'],
+        datasets: [{
+            label: 'Kovid-19 Ayiti - Graph ',
+            data: [{{cases}}, {{tests}}, {{deaths}}, {{recovered}}, {{active}}, {{critical}}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.4)',
+                'rgba(242, 239, 22, 0.5)',
+                'rgba(26, 28, 26, 0.5)',
+                'rgba(31, 171, 7, 0.5)',
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(242, 239, 22, 1)',
+                'rgba(26, 28, 26, 1)',
+                'rgba(31, 171, 7, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+
+
+ </div>
+
+{%endblock%}
+
+
+
+
+
+
